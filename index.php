@@ -1,18 +1,19 @@
 <?php
 session_start();
 
-// Jika sudah login, arahkan langsung ke dashboard
-if (isset($_SESSION['admin'])) {
-    header("Location: admin/dashboard.php");
-    exit;
+// Redirect based on user type
+if (isset($_SESSION['admin_id'])) {
+    header('Location: admin/dashboard.php');
+    exit();
 } elseif (isset($_SESSION['user_id'])) {
-    header("Location: user/dashboard.php");
-    exit;
+    header('Location: user/dashboard.php');
+    exit();
 } else {
-    // Jika belum login, arahkan ke login_user.php setelah 3 detik
-    header("Refresh: 3; url=login_user.php");
+    header('Location: login_user.php');
+    exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
